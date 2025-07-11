@@ -1,281 +1,282 @@
 {
-    "name": "nagari-language-support",
-    "displayName": "Nagari Language Support",
-    "description": "Comprehensive language support for Nagari programming language with syntax highlighting, LSP integration, and debugging",
-    "version": "0.1.0",
-    "publisher": "nagari-team",
-    "author": {
-        "name": "Nagari Team",
-        "url": "https://github.com/ayanalamMOON/Nagari"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/ayanalamMOON/Nagari.git"
-    },
-    "homepage": "https://github.com/ayanalamMOON/Nagari",
-    "bugs": {
-        "url": "https://github.com/ayanalamMOON/Nagari/issues"
-    },
-    "license": "MIT",
-    "keywords": [
-        "nagari",
-        "python",
-        "javascript",
-        "transpiler",
-        "programming-language"
-    ],
-    "engines": {
-        "vscode": "^1.102.0"
-    },
-    "categories": [
-        "Programming Languages",
-        "Debuggers",
-        "Snippets",
-        "Other"
-    ],
-    "activationEvents": [
-        "workspaceContains:**/*.nag"
-    ],
-    "main": "./out/extension.js",
-    "contributes": {
-        "languages": [
-            {
-                "id": "nagari",
-                "aliases": [
-                    "Nagari",
-                    "nagari"
-                ],
-                "extensions": [
-                    ".nag"
-                ],
-                "configuration": "./language-configuration.json",
-                "icon": {
-                    "light": "./images/nagari-icon-light.svg",
-                    "dark": "./images/nagari-icon-dark.svg"
-                }
-            }
+  "name": "nagari-language-support",
+  "displayName": "Nagari Language Support",
+  "description": "Comprehensive language support for Nagari programming language with syntax highlighting, LSP integration, and debugging",
+  "version": "0.1.0",
+  "publisher": "nagari-team",
+  "author": {
+    "name": "Nagari Team",
+    "url": "https://github.com/ayanalamMOON/Nagari"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ayanalamMOON/Nagari.git"
+  },
+  "homepage": "https://github.com/ayanalamMOON/Nagari",
+  "bugs": {
+    "url": "https://github.com/ayanalamMOON/Nagari/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "nagari",
+    "python",
+    "javascript",
+    "transpiler",
+    "programming-language"
+  ],
+  "engines": {
+    "vscode": "^1.102.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Debuggers",
+    "Snippets",
+    "Other"
+  ],
+  "activationEvents": [
+    "workspaceContains:**/*.nag"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "nagari",
+        "aliases": [
+          "Nagari",
+          "nagari"
         ],
-        "grammars": [
-            {
-                "language": "nagari",
-                "scopeName": "source.nagari",
-                "path": "./syntaxes/nagari.tmLanguage.json"
-            }
+        "extensions": [
+          ".nag"
         ],
-        "commands": [
-            {
-                "command": "nagari.run",
-                "title": "Run Nagari File",
-                "category": "Nagari",
-                "icon": "$(play)"
-            },
-            {
-                "command": "nagari.build",
-                "title": "Build Nagari Project",
-                "category": "Nagari",
-                "icon": "$(build)"
-            },
-            {
-                "command": "nagari.transpile",
-                "title": "Transpile to JavaScript",
-                "category": "Nagari",
-                "icon": "$(convert)"
-            },
-            {
-                "command": "nagari.startRepl",
-                "title": "Start Nagari REPL",
-                "category": "Nagari",
-                "icon": "$(terminal)"
-            }
-        ],
-        "menus": {
-            "editor/title": [
-                {
-                    "when": "resourceExtname == .nag",
-                    "command": "nagari.run",
-                    "group": "navigation"
-                }
-            ],
-            "editor/context": [
-                {
-                    "when": "resourceExtname == .nag",
-                    "command": "nagari.run",
-                    "group": "nagari"
-                },
-                {
-                    "when": "resourceExtname == .nag",
-                    "command": "nagari.transpile",
-                    "group": "nagari"
-                }
-            ],
-            "explorer/context": [
-                {
-                    "when": "resourceExtname == .nag",
-                    "command": "nagari.run",
-                    "group": "nagari"
-                }
-            ]
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./images/nagari-icon-16-light.png",
+          "dark": "./images/nagari-icon-16-dark.png"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "nagari",
+        "scopeName": "source.nagari",
+        "path": "./syntaxes/nagari.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "nagari.run",
+        "title": "Run Nagari File",
+        "category": "Nagari",
+        "icon": "$(play)"
+      },
+      {
+        "command": "nagari.build",
+        "title": "Build Nagari Project",
+        "category": "Nagari",
+        "icon": "$(build)"
+      },
+      {
+        "command": "nagari.transpile",
+        "title": "Transpile to JavaScript",
+        "category": "Nagari",
+        "icon": "$(convert)"
+      },
+      {
+        "command": "nagari.startRepl",
+        "title": "Start Nagari REPL",
+        "category": "Nagari",
+        "icon": "$(terminal)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "when": "resourceExtname == .nag",
+          "command": "nagari.run",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "when": "resourceExtname == .nag",
+          "command": "nagari.run",
+          "group": "nagari"
         },
-        "snippets": [
-            {
-                "language": "nagari",
-                "path": "./snippets/nagari.json"
-            }
-        ],
-        "debuggers": [
-            {
-                "type": "nagari",
-                "label": "Nagari Debug",
-                "program": "./out/debugAdapter.js",
-                "runtime": "node",
-                "configurationAttributes": {
-                    "launch": {
-                        "required": [
-                            "program"
-                        ],
-                        "properties": {
-                            "program": {
-                                "type": "string",
-                                "description": "Absolute path to a Nagari file.",
-                                "default": "${workspaceFolder}/${command:AskForProgramName}"
-                            },
-                            "args": {
-                                "type": "array",
-                                "description": "Command line arguments passed to the program.",
-                                "items": {
-                                    "type": "string"
-                                },
-                                "default": []
-                            },
-                            "cwd": {
-                                "type": "string",
-                                "description": "Absolute path to the working directory of the program being debugged.",
-                                "default": "${workspaceFolder}"
-                            },
-                            "env": {
-                                "type": "object",
-                                "description": "Environment variables passed to the program.",
-                                "default": {}
-                            }
-                        }
-                    }
-                },
-                "initialConfigurations": [
-                    {
-                        "type": "nagari",
-                        "request": "launch",
-                        "name": "Debug Nagari",
-                        "program": "${workspaceFolder}/${command:AskForProgramName}",
-                        "cwd": "${workspaceFolder}"
-                    }
-                ],
-                "configurationSnippets": [
-                    {
-                        "label": "Nagari: Launch",
-                        "description": "A new configuration for debugging a Nagari program",
-                        "body": {
-                            "type": "nagari",
-                            "request": "launch",
-                            "name": "Debug Nagari",
-                            "program": "^\"\\${workspaceFolder}/${1:main.nag}\"",
-                            "cwd": "^\"\\${workspaceFolder}\""
-                        }
-                    }
-                ]
-            }
-        ],
-        "taskDefinitions": [
-            {
-                "type": "nagari",
-                "required": [
-                    "task"
-                ],
-                "properties": {
-                    "task": {
-                        "type": "string",
-                        "description": "The Nagari task to execute"
-                    },
-                    "file": {
-                        "type": "string",
-                        "description": "The Nagari file to process"
-                    },
-                    "args": {
-                        "type": "array",
-                        "description": "Additional arguments"
-                    }
-                }
-            }
-        ],
-        "configuration": {
-            "type": "object",
-            "title": "Nagari",
+        {
+          "when": "resourceExtname == .nag",
+          "command": "nagari.transpile",
+          "group": "nagari"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "resourceExtname == .nag",
+          "command": "nagari.run",
+          "group": "nagari"
+        }
+      ]
+    },
+    "snippets": [
+      {
+        "language": "nagari",
+        "path": "./snippets/nagari.json"
+      }
+    ],
+    "debuggers": [
+      {
+        "type": "nagari",
+        "label": "Nagari Debug",
+        "program": "./out/debugAdapter.js",
+        "runtime": "node",
+        "configurationAttributes": {
+          "launch": {
+            "required": [
+              "program"
+            ],
             "properties": {
-                "nagari.executable.path": {
-                    "type": "string",
-                    "default": "nag",
-                    "description": "Path to the Nagari executable (nag command)"
+              "program": {
+                "type": "string",
+                "description": "Absolute path to a Nagari file.",
+                "default": "${workspaceFolder}/${command:AskForProgramName}"
+              },
+              "args": {
+                "type": "array",
+                "description": "Command line arguments passed to the program.",
+                "items": {
+                  "type": "string"
                 },
-                "nagari.lsp.enabled": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Enable Nagari Language Server Protocol support"
-                },
-                "nagari.lsp.port": {
-                    "type": "number",
-                    "default": 0,
-                    "description": "Port for Nagari LSP server (0 for stdio)"
-                },
-                "nagari.transpile.target": {
-                    "type": "string",
-                    "enum": [
-                        "browser",
-                        "node",
-                        "universal"
-                    ],
-                    "default": "browser",
-                    "description": "Default transpilation target"
-                },
-                "nagari.build.optimize": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Enable optimization during build"
-                },
-                "nagari.format.onSave": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Format Nagari files on save"
-                }
+                "default": []
+              },
+              "cwd": {
+                "type": "string",
+                "description": "Absolute path to the working directory of the program being debugged.",
+                "default": "${workspaceFolder}"
+              },
+              "env": {
+                "type": "object",
+                "description": "Environment variables passed to the program.",
+                "default": {}
+              }
             }
-        }
-    },
-    "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./"
-    },
-    "devDependencies": {
-        "@types/vscode": "^1.102.0",
-        "@types/node": "20.x",
-        "typescript": "^5.6.2"
-    },
-    "dependencies": {
-        "vscode-languageclient": "^9.0.1"
-    },
-    "keybindings": [
-        {
-            "command": "nagari.run",
-            "key": "ctrl+f5",
-            "when": "resourceExtname == .nag"
+          }
         },
-        {
-            "command": "nagari.build",
-            "key": "ctrl+shift+b",
-            "when": "resourceExtname == .nag"
-        },
-        {
-            "command": "nagari.transpile",
-            "key": "ctrl+shift+t",
-            "when": "resourceExtname == .nag"
+        "initialConfigurations": [
+          {
+            "type": "nagari",
+            "request": "launch",
+            "name": "Debug Nagari",
+            "program": "${workspaceFolder}/${command:AskForProgramName}",
+            "cwd": "${workspaceFolder}"
+          }
+        ],
+        "configurationSnippets": [
+          {
+            "label": "Nagari: Launch",
+            "description": "A new configuration for debugging a Nagari program",
+            "body": {
+              "type": "nagari",
+              "request": "launch",
+              "name": "Debug Nagari",
+              "program": "^\"\\${workspaceFolder}/${1:main.nag}\"",
+              "cwd": "^\"\\${workspaceFolder}\""
+            }
+          }
+        ]
+      }
+    ],
+    "taskDefinitions": [
+      {
+        "type": "nagari",
+        "required": [
+          "task"
+        ],
+        "properties": {
+          "task": {
+            "type": "string",
+            "description": "The Nagari task to execute"
+          },
+          "file": {
+            "type": "string",
+            "description": "The Nagari file to process"
+          },
+          "args": {
+            "type": "array",
+            "description": "Additional arguments"
+          }
         }
-    ]
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Nagari",
+      "properties": {
+        "nagari.executable.path": {
+          "type": "string",
+          "default": "nag",
+          "description": "Path to the Nagari executable (nag command)"
+        },
+        "nagari.lsp.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Nagari Language Server Protocol support"
+        },
+        "nagari.lsp.port": {
+          "type": "number",
+          "default": 0,
+          "description": "Port for Nagari LSP server (0 for stdio)"
+        },
+        "nagari.transpile.target": {
+          "type": "string",
+          "enum": [
+            "browser",
+            "node",
+            "universal"
+          ],
+          "default": "browser",
+          "description": "Default transpilation target"
+        },
+        "nagari.build.optimize": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable optimization during build"
+        },
+        "nagari.format.onSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Format Nagari files on save"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.102.0",
+    "@types/node": "20.x",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "keybindings": [
+    {
+      "command": "nagari.run",
+      "key": "ctrl+f5",
+      "when": "resourceExtname == .nag"
+    },
+    {
+      "command": "nagari.build",
+      "key": "ctrl+shift+b",
+      "when": "resourceExtname == .nag"
+    },
+    {
+      "command": "nagari.transpile",
+      "key": "ctrl+shift+t",
+      "when": "resourceExtname == .nag"
+    }
+  ],
+  "icon": "images/nagari-icon-128.png"
 }

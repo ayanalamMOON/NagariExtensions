@@ -1,93 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
     <defs>
-        <linearGradient id="bgGradient128" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#1E40AF;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
+        <!-- Deep background gradient -->
+        <radialGradient id="bgGradient" cx="50%" cy="50%" r="70%">
+            <stop offset="0%" style="stop-color:#1E3A5F;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#0F2A44;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#0A1B2E;stop-opacity:1" />
+        </radialGradient>
+
+        <!-- Mandala pattern gradient -->
+        <linearGradient id="mandalaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#22D3EE;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#06B6D4;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#0891B2;stop-opacity:1" />
         </linearGradient>
-        <linearGradient id="cobraGradient128" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#059669;stop-opacity:1" />
-            <stop offset="50%" style="stop-color:#10B981;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#34D399;stop-opacity:1" />
+
+        <!-- Nagari character gradient -->
+        <linearGradient id="nagariGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#FB923C;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#F97316;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#EA580C;stop-opacity:1" />
         </linearGradient>
-        <filter id="glow">
+
+        <!-- Code symbols gradient -->
+        <linearGradient id="codeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#34D399;stop-opacity:0.6" />
+            <stop offset="100%" style="stop-color:#10B981;stop-opacity:0.4" />
+        </linearGradient>
+
+        <!-- Glow filter -->
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
             <feMerge>
                 <feMergeNode in="coloredBlur"/>
                 <feMergeNode in="SourceGraphic"/>
             </feMerge>
         </filter>
+
+        <!-- Subtle shadow -->
+        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.3"/>
+        </filter>
     </defs>
 
-    <!-- Background with shadow -->
-    <rect width="128" height="128" fill="url(#bgGradient128)" rx="16" filter="url(#glow)"/>
+    <!-- Background -->
+    <circle cx="64" cy="64" r="64" fill="url(#bgGradient)"/>
 
-    <!-- King Cobra Body - Curved around J -->
-    <path d="M20 96 Q32 80 48 64 Q64 48 80 64 Q96 80 112 48"
-          stroke="url(#cobraGradient128)"
-          stroke-width="8"
-          fill="none"
-          stroke-linecap="round"
-          filter="url(#glow)"/>
+    <!-- Outer mandala ring -->
+    <circle cx="64" cy="64" r="58" fill="none" stroke="url(#mandalaGradient)" stroke-width="1.5" opacity="0.8"/>
 
-    <!-- Secondary curve for thickness -->
-    <path d="M24 92 Q36 76 52 60 Q68 44 84 60 Q100 76 108 52"
-          stroke="#047857"
-          stroke-width="4"
-          fill="none"
-          stroke-linecap="round"
-          opacity="0.6"/>
+    <!-- Mandala petals - outer layer -->
+    <g transform="translate(64,64)" stroke="url(#mandalaGradient)" stroke-width="1.2" fill="none" opacity="0.7">
+        <!-- 12 main petals -->
+        <g>
+            <path d="M0,-50 Q8,-45 12,-35 Q8,-25 0,-30 Q-8,-25 -12,-35 Q-8,-45 0,-50" transform="rotate(0)"/>
+            <path d="M0,-50 Q8,-45 12,-35 Q8,-25 0,-30 Q-8,-25 -12,-35 Q-8,-45 0,-50" transform="rotate(30)"/>
+            <path d="M0,-50 Q8,-45 12,-35 Q8,-25 0,-30 Q-8,-25 -12,-35 Q-8,-45 0,-50" transform="rotate(60)"/>
+            <path d="M0,-50 Q8,-45 12,-35 Q8,-25 0,-30 Q-8,-25 -12,-35 Q-8,-45 0,-50" transform="rotate(90)"/>
+            <path d="M0,-50 Q8,-45 12,-35 Q8,-25 0,-30 Q-8,-25 -12,-35 Q-8,-45 0,-50" transform="rotate(120)"/>
+            <path d="M0,-50 Q8,-45 12,-35 Q8,-25 0,-30 Q-8,-25 -12,-35 Q-8,-45 0,-50" transform="rotate(150)"/>
+            <path d="M0,-50 Q8,-45 12,-35 Q8,-25 0,-30 Q-8,-25 -12,-35 Q-8,-45 0,-50" transform="rotate(180)"/>
+            <path d="M0,-50 Q8,-45 12,-35 Q8,-25 0,-30 Q-8,-25 -12,-35 Q-8,-45 0,-50" transform="rotate(210)"/>
+            <path d="M0,-50 Q8,-45 12,-35 Q8,-25 0,-30 Q-8,-25 -12,-35 Q-8,-45 0,-50" transform="rotate(240)"/>
+            <path d="M0,-50 Q8,-45 12,-35 Q8,-25 0,-30 Q-8,-25 -12,-35 Q-8,-45 0,-50" transform="rotate(270)"/>
+            <path d="M0,-50 Q8,-45 12,-35 Q8,-25 0,-30 Q-8,-25 -12,-35 Q-8,-45 0,-50" transform="rotate(300)"/>
+            <path d="M0,-50 Q8,-45 12,-35 Q8,-25 0,-30 Q-8,-25 -12,-35 Q-8,-45 0,-50" transform="rotate(330)"/>
+        </g>
 
-    <!-- Cobra Head -->
-    <ellipse cx="108" cy="52" rx="12" ry="8" fill="#059669" filter="url(#glow)"/>
-    <circle cx="112" cy="48" r="3" fill="#DC2626"/> <!-- Eye -->
-    <circle cx="113" cy="47" r="1" fill="#FBBF24"/> <!-- Eye reflection -->
+        <!-- Decorative elements -->
+        <g opacity="0.6">
+            <circle cx="0" cy="-42" r="2" fill="url(#mandalaGradient)" transform="rotate(0)"/>
+            <circle cx="0" cy="-42" r="2" fill="url(#mandalaGradient)" transform="rotate(45)"/>
+            <circle cx="0" cy="-42" r="2" fill="url(#mandalaGradient)" transform="rotate(90)"/>
+            <circle cx="0" cy="-42" r="2" fill="url(#mandalaGradient)" transform="rotate(135)"/>
+            <circle cx="0" cy="-42" r="2" fill="url(#mandalaGradient)" transform="rotate(180)"/>
+            <circle cx="0" cy="-42" r="2" fill="url(#mandalaGradient)" transform="rotate(225)"/>
+            <circle cx="0" cy="-42" r="2" fill="url(#mandalaGradient)" transform="rotate(270)"/>
+            <circle cx="0" cy="-42" r="2" fill="url(#mandalaGradient)" transform="rotate(315)"/>
+        </g>
+    </g>
 
-    <!-- Cobra Hood Pattern -->
-    <path d="M96 52 Q108 36 120 52"
-          stroke="#047857"
-          stroke-width="3"
-          fill="none"/>
-    <path d="M100 50 Q108 40 116 50"
-          stroke="#065F46"
-          stroke-width="2"
-          fill="none"/>
+    <!-- Inner mandala ring -->
+    <circle cx="64" cy="64" r="38" fill="none" stroke="url(#mandalaGradient)" stroke-width="1" opacity="0.6"/>
 
-    <!-- Forked tongue -->
-    <path d="M116 50 L124 48 M124 48 L126 46 M124 48 L126 50"
-          stroke="#DC2626"
-          stroke-width="1.5"
-          stroke-linecap="round"/>
+    <!-- Inner decorative patterns -->
+    <g transform="translate(64,64)" stroke="url(#mandalaGradient)" stroke-width="0.8" fill="none" opacity="0.5">
+        <!-- Diamond shapes -->
+        <g>
+            <path d="M0,-32 L4,-28 L0,-24 L-4,-28 Z" transform="rotate(0)"/>
+            <path d="M0,-32 L4,-28 L0,-24 L-4,-28 Z" transform="rotate(60)"/>
+            <path d="M0,-32 L4,-28 L0,-24 L-4,-28 Z" transform="rotate(120)"/>
+            <path d="M0,-32 L4,-28 L0,-24 L-4,-28 Z" transform="rotate(180)"/>
+            <path d="M0,-32 L4,-28 L0,-24 L-4,-28 Z" transform="rotate(240)"/>
+            <path d="M0,-32 L4,-28 L0,-24 L-4,-28 Z" transform="rotate(300)"/>
+        </g>
+    </g>
 
-    <!-- Letter J in the center -->
-    <text x="56" y="88"
-          font-family="Georgia, serif"
-          font-size="48"
-          font-weight="bold"
-          text-anchor="middle"
-          fill="#F9FAFB"
-          stroke="#1F2937"
-          stroke-width="2"
-          filter="url(#glow)">J</text>
+    <!-- Central circle background -->
+    <circle cx="64" cy="64" r="28" fill="#0F2A44" stroke="url(#mandalaGradient)" stroke-width="1.5" filter="url(#shadow)"/>
 
-    <!-- Snake scales pattern -->
-    <circle cx="32" cy="88" r="3" fill="#047857" opacity="0.6"/>
-    <circle cx="48" cy="72" r="3" fill="#047857" opacity="0.6"/>
-    <circle cx="64" cy="56" r="3" fill="#047857" opacity="0.6"/>
-    <circle cx="80" cy="72" r="3" fill="#047857" opacity="0.6"/>
-    <circle cx="96" cy="64" r="3" fill="#047857" opacity="0.6"/>
+    <!-- Code symbols in background -->
+    <g transform="translate(64,64)" fill="url(#codeGradient)" opacity="0.3">
+        <text x="-20" y="-10" font-family="monospace" font-size="8" text-anchor="middle">&lt;</text>
+        <text x="20" y="-10" font-family="monospace" font-size="8" text-anchor="middle">&gt;</text>
+        <text x="-20" y="15" font-family="monospace" font-size="8" text-anchor="middle">{</text>
+        <text x="20" y="15" font-family="monospace" font-size="8" text-anchor="middle">}</text>
+        <text x="0" y="-20" font-family="monospace" font-size="6" text-anchor="middle">/</text>
+        <text x="5" y="20" font-family="monospace" font-size="6" text-anchor="middle">&gt;</text>
+    </g>
 
-    <!-- Additional detail scales -->
-    <circle cx="28" cy="84" r="1.5" fill="#065F46" opacity="0.8"/>
-    <circle cx="44" cy="68" r="1.5" fill="#065F46" opacity="0.8"/>
-    <circle cx="60" cy="52" r="1.5" fill="#065F46" opacity="0.8"/>
-    <circle cx="76" cy="68" r="1.5" fill="#065F46" opacity="0.8"/>
-    <circle cx="92" cy="60" r="1.5" fill="#065F46" opacity="0.8"/>
+    <!-- Main Nagari character (stylized न) -->
+    <g transform="translate(64,64)" fill="url(#nagariGradient)" filter="url(#glow)">
+        <!-- Top horizontal line (शिरोरेखा) -->
+        <rect x="-12" y="-15" width="24" height="3" rx="1"/>
 
-    <!-- Subtle highlight on J -->
-    <path d="M52 45 Q56 35 60 45"
-          stroke="#FBBF24"
-          stroke-width="1"
-          fill="none"
-          opacity="0.4"/>
+        <!-- Left vertical stroke -->
+        <rect x="-12" y="-15" width="3" height="20" rx="1"/>
+
+        <!-- Central curved part -->
+        <path d="M-9,-12 Q0,-8 9,-12 Q12,-8 9,-4 Q0,0 -9,-4 Q-12,-8 -9,-12" fill="url(#nagariGradient)"/>
+
+        <!-- Right vertical element -->
+        <rect x="9" y="-15" width="3" height="15" rx="1"/>
+
+        <!-- Bottom connecting stroke -->
+        <rect x="-6" y="2" width="15" height="3" rx="1"/>
+
+        <!-- Accent mark (मात्रा) -->
+        <path d="M0,-18 Q3,-20 6,-18 Q3,-16 0,-18" fill="#FED7AA" opacity="0.8"/>
+    </g>
+
+    <!-- Subtle outer glow -->
+    <circle cx="64" cy="64" r="62" fill="none" stroke="url(#mandalaGradient)" stroke-width="0.5" opacity="0.3"/>
 </svg>

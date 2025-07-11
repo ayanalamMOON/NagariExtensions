@@ -1,50 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
     <defs>
-        <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#1E40AF;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
+        <!-- Light theme background -->
+        <radialGradient id="bgLight" cx="50%" cy="50%" r="70%">
+            <stop offset="0%" style="stop-color:#F1F5F9;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#E2E8F0;stop-opacity:1" />
+        </radialGradient>
+
+        <!-- Mandala pattern for light theme -->
+        <linearGradient id="mandalaLight" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#0891B2;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:1" />
         </linearGradient>
-        <linearGradient id="cobraGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#059669;stop-opacity:1" />
-            <stop offset="50%" style="stop-color:#10B981;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#34D399;stop-opacity:1" />
+
+        <!-- Nagari character for light theme -->
+        <linearGradient id="nagariLight" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#EA580C;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#F97316;stop-opacity:1" />
         </linearGradient>
     </defs>
 
     <!-- Background -->
-    <rect width="16" height="16" fill="url(#bgGradient)" rx="2"/>
+    <circle cx="8" cy="8" r="8" fill="url(#bgLight)"/>
 
-    <!-- King Cobra Body - Curved around J -->
-    <path d="M2 12 Q4 10 6 8 Q8 6 10 8 Q12 10 14 6"
-          stroke="url(#cobraGradient)"
-          stroke-width="1.5"
-          fill="none"
-          stroke-linecap="round"/>
+    <!-- Simplified mandala ring -->
+    <circle cx="8" cy="8" r="7" fill="none" stroke="url(#mandalaLight)" stroke-width="0.5" opacity="0.8"/>
 
-    <!-- Cobra Head -->
-    <circle cx="13.5" cy="6.5" r="1.2" fill="#059669"/>
-    <circle cx="13.8" cy="6.2" r="0.3" fill="#DC2626"/> <!-- Eye -->
+    <!-- Simplified petals -->
+    <g transform="translate(8,8)" stroke="url(#mandalaLight)" stroke-width="0.3" fill="none" opacity="0.6">
+        <path d="M0,-6 Q1,-5 0,-4 Q-1,-5 0,-6" transform="rotate(0)"/>
+        <path d="M0,-6 Q1,-5 0,-4 Q-1,-5 0,-6" transform="rotate(90)"/>
+        <path d="M0,-6 Q1,-5 0,-4 Q-1,-5 0,-6" transform="rotate(180)"/>
+        <path d="M0,-6 Q1,-5 0,-4 Q-1,-5 0,-6" transform="rotate(270)"/>
+    </g>
 
-    <!-- Cobra Hood Pattern -->
-    <path d="M12.5 6 Q13.5 4.5 14.5 6"
-          stroke="#047857"
-          stroke-width="0.5"
-          fill="none"/>
+    <!-- Central circle -->
+    <circle cx="8" cy="8" r="4" fill="#F8FAFC" stroke="url(#mandalaLight)" stroke-width="0.5"/>
 
-    <!-- Letter J in the center -->
-    <text x="7" y="11"
-          font-family="Georgia, serif"
-          font-size="8"
-          font-weight="bold"
-          text-anchor="middle"
-          fill="#F9FAFB"
-          stroke="#1F2937"
-          stroke-width="0.3">J</text>
+    <!-- Simplified Nagari character -->
+    <g transform="translate(8,8)" fill="url(#nagariLight)">
+        <!-- Top line -->
+        <rect x="-2" y="-2" width="4" height="0.5" rx="0.2"/>
+        <!-- Left stroke -->
+        <rect x="-2" y="-2" width="0.5" height="3" rx="0.2"/>
+        <!-- Central curve -->
+        <path d="M-1.5,-1.5 Q0,-1 1.5,-1.5 Q1.5,-0.5 0,0 Q-1.5,-0.5 -1.5,-1.5"/>
+        <!-- Right element -->
+        <rect x="1.5" y="-2" width="0.5" height="2" rx="0.2"/>
+    </g>
 
-    <!-- Snake scales pattern -->
-    <circle cx="4" cy="11" r="0.3" fill="#047857" opacity="0.6"/>
-    <circle cx="6" cy="9" r="0.3" fill="#047857" opacity="0.6"/>
-    <circle cx="8" cy="7" r="0.3" fill="#047857" opacity="0.6"/>
-    <circle cx="10" cy="9" r="0.3" fill="#047857" opacity="0.6"/>
+    <!-- Border -->
+    <circle cx="8" cy="8" r="7.5" fill="none" stroke="#CBD5E1" stroke-width="0.2" opacity="0.5"/>
 </svg>
