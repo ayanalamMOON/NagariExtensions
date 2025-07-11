@@ -1,0 +1,144 @@
+{
+    "name": "Nagari Light",
+    "type": "light",
+    "colors": {
+        "editor.background": "#ffffff",
+        "editor.foreground": "#24292f",
+        "editorLineNumber.foreground": "#656d76",
+        "editorLineNumber.activeForeground": "#24292f",
+        "editor.selectionBackground": "#0366d625",
+        "editor.inactiveSelectionBackground": "#0366d615",
+        "editorIndentGuide.background": "#d1d9e0",
+        "editorIndentGuide.activeBackground": "#8c959f",
+        "editor.wordHighlightBackground": "#ffd33d33",
+        "editor.wordHighlightStrongBackground": "#0366d625",
+        "editorCursor.foreground": "#24292f",
+        "editor.lineHighlightBackground": "#f6f8fa"
+    },
+    "tokenColors": [
+        {
+            "name": "Comment",
+            "scope": [
+                "comment",
+                "punctuation.definition.comment"
+            ],
+            "settings": {
+                "fontStyle": "italic",
+                "foreground": "#6f7782"
+            }
+        },
+        {
+            "name": "Keyword",
+            "scope": [
+                "keyword",
+                "storage.type",
+                "storage.modifier"
+            ],
+            "settings": {
+                "foreground": "#cf222e",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "Nagari Keywords",
+            "scope": [
+                "keyword.control.nagari",
+                "keyword.other.nagari"
+            ],
+            "settings": {
+                "foreground": "#8250df",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "String",
+            "scope": [
+                "string",
+                "string.quoted"
+            ],
+            "settings": {
+                "foreground": "#0a3069"
+            }
+        },
+        {
+            "name": "Number",
+            "scope": [
+                "constant.numeric"
+            ],
+            "settings": {
+                "foreground": "#0550ae"
+            }
+        },
+        {
+            "name": "Function",
+            "scope": [
+                "entity.name.function",
+                "meta.function-call",
+                "variable.function"
+            ],
+            "settings": {
+                "foreground": "#8250df",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "Class",
+            "scope": [
+                "entity.name.class",
+                "entity.name.type.class"
+            ],
+            "settings": {
+                "foreground": "#1f6feb",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "Variable",
+            "scope": [
+                "variable",
+                "meta.definition.variable"
+            ],
+            "settings": {
+                "foreground": "#24292f"
+            }
+        },
+        {
+            "name": "Operator",
+            "scope": [
+                "keyword.operator"
+            ],
+            "settings": {
+                "foreground": "#24292f"
+            }
+        },
+        {
+            "name": "Punctuation",
+            "scope": [
+                "punctuation"
+            ],
+            "settings": {
+                "foreground": "#24292f"
+            }
+        },
+        {
+            "name": "Nagari Import",
+            "scope": [
+                "keyword.control.import.nagari"
+            ],
+            "settings": {
+                "foreground": "#d1242f",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "name": "Nagari Decorator",
+            "scope": [
+                "entity.name.function.decorator.nagari"
+            ],
+            "settings": {
+                "foreground": "#bf8700",
+                "fontStyle": "italic"
+            }
+        }
+    ]
+}

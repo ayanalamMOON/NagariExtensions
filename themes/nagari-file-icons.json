@@ -1,0 +1,23 @@
+{
+    "iconDefinitions": {
+        "nagari-file": {
+            "iconPath": "../images/nagari-icon-16-light.png"
+        },
+        "nagari-file-dark": {
+            "iconPath": "../images/nagari-icon-16-dark.png"
+        }
+    },
+    "fileExtensions": {
+        "nag": "nagari-file"
+    },
+    "light": {
+        "fileExtensions": {
+            "nag": "nagari-file"
+        }
+    },
+    "highContrast": {
+        "fileExtensions": {
+            "nag": "nagari-file-dark"
+        }
+    }
+}

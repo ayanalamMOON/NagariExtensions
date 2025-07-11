@@ -1,0 +1,260 @@
+# Nagari Language Examples
+# This file demonstrates various Nagari language features
+
+from typing import List, Dict, Optional
+from enum import Enum
+
+# Enumerations
+class Status(Enum):
+    PENDING = "pending"
+    COMPLETED = "completed"
+    FAILED = "failed"
+
+# Data classes with type hints
+@dataclass
+class User:
+    id: int
+    name: str
+    email: str
+    age: Optional[int] = None
+    active: bool = True
+
+# Basic function with type hints
+def greet(name: str = "World") -> str:
+    """Return a friendly greeting message"""
+    return f"Hello, {name}! Welcome to Nagari!"
+
+# Async function with error handling
+async def fetch_user_data(user_id: int) -> Optional[User]:
+    """Fetch user data from an API"""
+    try:
+        # Simulate API call
+        response = await fetch(f"/api/users/{user_id}")
+        data = await response.json()
+
+        return User(
+            id=data["id"],
+            name=data["name"],
+            email=data["email"],
+            age=data.get("age"),
+            active=data.get("active", True)
+        )
+    except Exception as e:
+        print(f"Error fetching user data: {e}")
+        return None
+
+# Generator function
+def fibonacci_sequence(n: int):
+    """Generate Fibonacci sequence up to n numbers"""
+    a, b = 0, 1
+    for i in range(n):
+        yield a
+        a, b = b, a + b
+
+# Class with properties and methods
+class TodoManager:
+    """Manage a list of todo items"""
+
+    def __init__(self):
+        self._todos: List[Dict] = []
+        self._next_id = 1
+
+    @property
+    def count(self) -> int:
+        """Get the number of todos"""
+        return len(self._todos)
+
+    def add_todo(self, title: str, description: str = "") -> int:
+        """Add a new todo item"""
+        todo = {
+            "id": self._next_id,
+            "title": title,
+            "description": description,
+            "status": Status.PENDING,
+            "created_at": datetime.now()
+        }
+        self._todos.append(todo)
+        self._next_id += 1
+        return todo["id"]
+
+    def complete_todo(self, todo_id: int) -> bool:
+        """Mark a todo as completed"""
+        for todo in self._todos:
+            if todo["id"] == todo_id:
+                todo["status"] = Status.COMPLETED
+                return True
+        return False
+
+    def get_todos_by_status(self, status: Status) -> List[Dict]:
+        """Get todos filtered by status"""
+        return [todo for todo in self._todos if todo["status"] == status]
+
+# List comprehension examples
+def process_data(numbers: List[int]) -> Dict[str, List[int]]:
+    """Process a list of numbers using comprehensions"""
+    return {
+        "evens": [n for n in numbers if n % 2 == 0],
+        "odds": [n for n in numbers if n % 2 == 1],
+        "squares": [n ** 2 for n in numbers],
+        "positive": [n for n in numbers if n > 0]
+    }
+
+# Dictionary comprehension
+def create_user_lookup(users: List[User]) -> Dict[int, str]:
+    """Create a lookup dictionary from user ID to name"""
+    return {user.id: user.name for user in users if user.active}
+
+# Context manager usage
+def read_config_file(filename: str) -> Dict:
+    """Read configuration from a JSON file"""
+    with open(filename, 'r') as file:
+        return json.loads(file.read())
+
+# Pattern matching (match statement)
+def handle_api_response(response_code: int, data: any) -> str:
+    """Handle different API response codes"""
+    match response_code:
+        case 200:
+            return f"Success: {data}"
+        case 404:
+            return "Resource not found"
+        case 500:
+            return "Internal server error"
+        case code if 400 <= code < 500:
+            return f"Client error: {code}"
+        case code if 500 <= code < 600:
+            return f"Server error: {code}"
+        case _:
+            return f"Unknown response code: {response_code}"
+
+# React component example (JSX in Nagari)
+def UserProfile({ user, onEdit }):
+    """A React component for displaying user profile"""
+    return (
+        <div className="user-profile">
+            <img src={user.avatar} alt={f"{user.name}'s avatar"} />
+            <h2>{user.name}</h2>
+            <p>{user.email}</p>
+            {user.age and <p>Age: {user.age}</p>}
+            <button onClick={onEdit}>Edit Profile</button>
+        </div>
+    )
+
+# React hooks usage
+def UserList():
+    """Component that manages a list of users"""
+    users, setUsers = useState([])
+    loading, setLoading = useState(True)
+
+    useEffect(() => {
+        async def loadUsers():
+            setLoading(True)
+            try:
+                response = await fetch('/api/users')
+                userData = await response.json()
+                setUsers(userData)
+            except error:
+                console.error('Failed to load users:', error)
+            finally:
+                setLoading(False)
+
+        loadUsers()
+    }, [])
+
+    if loading:
+        return <div>Loading...</div>
+
+    return (
+        <div className="user-list">
+            {users.map(user => (
+                <UserProfile
+                    key={user.id}
+                    user={user}
+                    onEdit={() => handleEdit(user.id)}
+                />
+            ))}
+        </div>
+    )
+
+# Express.js route handler example
+@app.get("/api/users/:id")
+async def get_user(req, res):
+    """Get a specific user by ID"""
+    user_id = int(req.params.id)
+
+    try:
+        user = await fetch_user_data(user_id)
+        if user:
+            res.json({"success": True, "user": user})
+        else:
+            res.status(404).json({"error": "User not found"})
+    except Exception as e:
+        res.status(500).json({"error": str(e)})
+
+@app.post("/api/todos")
+async def create_todo(req, res):
+    """Create a new todo item"""
+    data = await req.json()
+
+    if not data.get("title"):
+        return res.status(400).json({"error": "Title is required"})
+
+    todo_manager = TodoManager()
+    todo_id = todo_manager.add_todo(data["title"], data.get("description", ""))
+
+    res.status(201).json({
+        "success": True,
+        "todo_id": todo_id,
+        "message": "Todo created successfully"
+    })
+
+# Decorator example
+def timing_decorator(func):
+    """Decorator to measure function execution time"""
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f"{func.__name__} took {end_time - start_time:.2f} seconds")
+        return result
+    return wrapper
+
+@timing_decorator
+def expensive_calculation(n: int) -> int:
+    """An expensive calculation for demonstration"""
+    return sum(i ** 2 for i in range(n))
+
+# Main application entry point
+async def main():
+    """Main application function"""
+    print("🚀 Starting Nagari application...")
+
+    # Create a todo manager
+    todo_manager = TodoManager()
+
+    # Add some todos
+    todo1 = todo_manager.add_todo("Learn Nagari", "Study the Nagari programming language")
+    todo2 = todo_manager.add_todo("Build a web app", "Create a todo app using Nagari")
+
+    print(f"Created {todo_manager.count} todos")
+
+    # Process some data
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    processed = process_data(numbers)
+    print(f"Processed data: {processed}")
+
+    # Generate Fibonacci sequence
+    fib_numbers = list(fibonacci_sequence(10))
+    print(f"Fibonacci sequence: {fib_numbers}")
+
+    # Test expensive calculation
+    result = expensive_calculation(1000)
+    print(f"Calculation result: {result}")
+
+    print("✅ Application completed successfully!")
+
+# Entry point
+if __name__ == "__main__":
+    # Run the async main function
+    import asyncio
+    asyncio.run(main())
