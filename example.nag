@@ -1,0 +1,106 @@
+# Nagari Language Example
+# This file demonstrates the syntax highlighting and features
+
+def fibonacci(n: int) -> int:
+    """Calculate fibonacci number recursively"""
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+def fibonacci_iterative(n: int) -> int:
+    """Calculate fibonacci number iteratively"""
+    if n <= 0:
+        return 0
+    if n == 1:
+        return 1
+
+    a = 0
+    b = 1
+    i = 2
+    while i <= n:
+        temp = a + b
+        a = b
+        b = temp
+        i = i + 1
+
+    return b
+
+class FibonacciCalculator:
+    """A class for fibonacci calculations"""
+
+    def __init__(self):
+        self.cache = {0: 0, 1: 1}
+
+    def calculate(self, n: int) -> int:
+        if n not in self.cache:
+            self.cache[n] = self.calculate(n-1) + self.calculate(n-2)
+        return self.cache[n]
+
+# React component example
+import React, { useState } from "react"
+
+def FibonacciComponent():
+    number, setNumber = useState(10)
+
+    return (
+        <div className="fibonacci-app">
+            <h1>Fibonacci Calculator</h1>
+            <input
+                type="number"
+                value={number}
+                onChange={(e) => setNumber(parseInt(e.target.value))}
+            />
+            <p>Result: {fibonacci(number)}</p>
+        </div>
+    )
+
+# Async programming example
+async def fetch_fibonacci_data(n: int):
+    try:
+        response = await fetch(f"https://api.example.com/fibonacci/{n}")
+        data = await response.json()
+        return data
+    except Exception as e:
+        print(f"Error fetching data: {e}")
+        return None
+
+# List comprehensions
+fibonacci_sequence = [fibonacci(i) for i in range(10)]
+even_fibonacci = [x for x in fibonacci_sequence if x % 2 == 0]
+
+# Pattern matching
+def analyze_number(n: int):
+    match n:
+        case 0:
+            return "Zero"
+        case 1:
+            return "One"
+        case x if x < 0:
+            return "Negative"
+        case x if x % 2 == 0:
+            return "Even"
+        case _:
+            return "Odd"
+
+# Main function
+def main():
+    print("Fibonacci Calculator")
+    print("===================")
+
+    # Test both implementations
+    for i in range(11):
+        rec_result = fibonacci(i)
+        iter_result = fibonacci_iterative(i)
+        status = "PASS" if rec_result == iter_result else "FAIL"
+        print(f"fibonacci({i}) = {rec_result} | Status: {status}")
+
+    # Test class-based implementation
+    calculator = FibonacciCalculator()
+    print(f"\nUsing class: fibonacci(15) = {calculator.calculate(15)}")
+
+    # Show list comprehensions
+    print(f"\nFirst 10 fibonacci numbers: {fibonacci_sequence}")
+    print(f"Even fibonacci numbers: {even_fibonacci}")
+
+if __name__ == "__main__":
+    main()

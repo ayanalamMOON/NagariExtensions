@@ -1,0 +1,381 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Nagari",
+    "scopeName": "source.nagari",
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#builtins"
+        },
+        {
+            "include": "#decorators"
+        },
+        {
+            "include": "#function-definitions"
+        },
+        {
+            "include": "#class-definitions"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#fstrings"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#operators"
+        },
+        {
+            "include": "#type-annotations"
+        },
+        {
+            "include": "#imports"
+        },
+        {
+            "include": "#constants"
+        },
+        {
+            "include": "#jsx"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.number-sign.nagari",
+                    "match": "#.*$"
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.nagari",
+                    "match": "\\b(if|elif|else|while|for|in|break|continue|return|yield|pass|raise|try|except|finally|with|as|assert|match|case)\\b"
+                },
+                {
+                    "name": "keyword.other.nagari",
+                    "match": "\\b(def|class|async|await|lambda|global|nonlocal|import|from|and|or|not|is)\\b"
+                },
+                {
+                    "name": "storage.type.nagari",
+                    "match": "\\b(int|float|str|bool|list|dict|tuple|set|None)\\b"
+                },
+                {
+                    "name": "keyword.operator.logical.nagari",
+                    "match": "\\b(and|or|not|in|is)\\b"
+                }
+            ]
+        },
+        "builtins": {
+            "patterns": [
+                {
+                    "name": "support.function.builtin.nagari",
+                    "match": "\\b(print|len|range|enumerate|zip|map|filter|reduce|sum|min|max|abs|round|sorted|reversed|any|all|isinstance|type|hasattr|getattr|setattr)\\b"
+                },
+                {
+                    "name": "support.type.exception.nagari",
+                    "match": "\\b(Exception|ValueError|TypeError|IndexError|KeyError|AttributeError|IOError|OSError)\\b"
+                }
+            ]
+        },
+        "decorators": {
+            "patterns": [
+                {
+                    "name": "entity.name.function.decorator.nagari",
+                    "match": "@\\w+(\\.\\w+)*",
+                    "captures": {
+                        "0": {
+                            "name": "entity.name.function.decorator.nagari"
+                        }
+                    }
+                }
+            ]
+        },
+        "function-definitions": {
+            "patterns": [
+                {
+                    "name": "meta.function.nagari",
+                    "begin": "^\\s*(async\\s+)?(def)\\s+([a-zA-Z_]\\w*)\\s*\\(",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.other.nagari"
+                        },
+                        "2": {
+                            "name": "keyword.other.nagari"
+                        },
+                        "3": {
+                            "name": "entity.name.function.nagari"
+                        }
+                    },
+                    "end": "\\)\\s*:",
+                    "patterns": [
+                        {
+                            "include": "#function-parameters"
+                        }
+                    ]
+                }
+            ]
+        },
+        "class-definitions": {
+            "patterns": [
+                {
+                    "name": "meta.class.nagari",
+                    "match": "^\\s*(class)\\s+([a-zA-Z_]\\w*)\\s*(\\([^\\)]*\\))?\\s*:",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.other.nagari"
+                        },
+                        "2": {
+                            "name": "entity.name.class.nagari"
+                        },
+                        "3": {
+                            "name": "meta.class.inheritance.nagari"
+                        }
+                    }
+                }
+            ]
+        },
+        "function-parameters": {
+            "patterns": [
+                {
+                    "name": "meta.function.parameters.nagari",
+                    "match": "([a-zA-Z_]\\w*)\\s*(:)\\s*([^,=)]+)",
+                    "captures": {
+                        "1": {
+                            "name": "variable.parameter.nagari"
+                        },
+                        "2": {
+                            "name": "punctuation.separator.annotation.nagari"
+                        },
+                        "3": {
+                            "name": "meta.type.annotation.nagari"
+                        }
+                    }
+                }
+            ]
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "name": "string.quoted.triple.nagari",
+                    "begin": "\"\"\"",
+                    "end": "\"\"\"",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.nagari",
+                            "match": "\\\\."
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.triple.nagari",
+                    "begin": "'''",
+                    "end": "'''",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.nagari",
+                            "match": "\\\\."
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.double.nagari",
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.nagari",
+                            "match": "\\\\."
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.single.nagari",
+                    "begin": "'",
+                    "end": "'",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.nagari",
+                            "match": "\\\\."
+                        }
+                    ]
+                }
+            ]
+        },
+        "fstrings": {
+            "patterns": [
+                {
+                    "name": "string.interpolated.nagari",
+                    "begin": "f\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "name": "meta.embedded.block.nagari",
+                            "begin": "\\{",
+                            "end": "\\}",
+                            "patterns": [
+                                {
+                                    "include": "source.nagari"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "constant.character.escape.nagari",
+                            "match": "\\\\."
+                        }
+                    ]
+                },
+                {
+                    "name": "string.interpolated.nagari",
+                    "begin": "f'",
+                    "end": "'",
+                    "patterns": [
+                        {
+                            "name": "meta.embedded.block.nagari",
+                            "begin": "\\{",
+                            "end": "\\}",
+                            "patterns": [
+                                {
+                                    "include": "source.nagari"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "constant.character.escape.nagari",
+                            "match": "\\\\."
+                        }
+                    ]
+                }
+            ]
+        },
+        "numbers": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.float.nagari",
+                    "match": "\\b\\d+\\.\\d*([eE][+-]?\\d+)?\\b"
+                },
+                {
+                    "name": "constant.numeric.integer.nagari",
+                    "match": "\\b\\d+\\b"
+                },
+                {
+                    "name": "constant.numeric.hex.nagari",
+                    "match": "\\b0[xX][0-9a-fA-F]+\\b"
+                },
+                {
+                    "name": "constant.numeric.octal.nagari",
+                    "match": "\\b0[oO][0-7]+\\b"
+                },
+                {
+                    "name": "constant.numeric.binary.nagari",
+                    "match": "\\b0[bB][01]+\\b"
+                }
+            ]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.assignment.nagari",
+                    "match": "\\+=|\\-=|\\*=|\\/=|\\%=|\\&=|\\|=|\\^=|>>=|<<=|\\*\\*="
+                },
+                {
+                    "name": "keyword.operator.arithmetic.nagari",
+                    "match": "\\+|\\-|\\*|\\/|\\%|\\*\\*|\\/\\/"
+                },
+                {
+                    "name": "keyword.operator.comparison.nagari",
+                    "match": "==|!=|<|>|<=|>=|<>"
+                },
+                {
+                    "name": "keyword.operator.bitwise.nagari",
+                    "match": "\\&|\\||\\^|~|<<|>>"
+                },
+                {
+                    "name": "keyword.operator.assignment.nagari",
+                    "match": "="
+                }
+            ]
+        },
+        "type-annotations": {
+            "patterns": [
+                {
+                    "name": "meta.type.annotation.nagari",
+                    "match": ":\\s*([a-zA-Z_]\\w*(\\[[^\\]]*\\])?)",
+                    "captures": {
+                        "1": {
+                            "name": "meta.type.nagari"
+                        }
+                    }
+                }
+            ]
+        },
+        "imports": {
+            "patterns": [
+                {
+                    "name": "meta.import.nagari",
+                    "match": "^\\s*(import|from)\\s+([a-zA-Z_]\\w*(\\.\\w+)*)",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.control.import.nagari"
+                        },
+                        "2": {
+                            "name": "entity.name.namespace.nagari"
+                        }
+                    }
+                }
+            ]
+        },
+        "constants": {
+            "patterns": [
+                {
+                    "name": "constant.language.nagari",
+                    "match": "\\b(True|False|None)\\b"
+                },
+                {
+                    "name": "constant.other.nagari",
+                    "match": "\\b[A-Z_][A-Z0-9_]*\\b"
+                }
+            ]
+        },
+        "jsx": {
+            "patterns": [
+                {
+                    "name": "meta.jsx.nagari",
+                    "begin": "<[a-zA-Z_]\\w*",
+                    "end": "/?>",
+                    "patterns": [
+                        {
+                            "name": "entity.name.tag.jsx.nagari",
+                            "match": "[a-zA-Z_]\\w*"
+                        },
+                        {
+                            "name": "entity.other.attribute-name.jsx.nagari",
+                            "match": "[a-zA-Z_]\\w*(?=\\s*=)"
+                        },
+                        {
+                            "include": "#strings"
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.jsx.closing.nagari",
+                    "match": "</[a-zA-Z_]\\w*>",
+                    "captures": {
+                        "0": {
+                            "name": "entity.name.tag.jsx.nagari"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

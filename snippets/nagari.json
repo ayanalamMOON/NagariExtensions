@@ -1,0 +1,192 @@
+{
+    "Function Definition": {
+        "prefix": "def",
+        "body": [
+            "def ${1:function_name}(${2:parameters}):",
+            "    ${3:pass}"
+        ],
+        "description": "Define a function"
+    },
+    "Async Function Definition": {
+        "prefix": "adef",
+        "body": [
+            "async def ${1:function_name}(${2:parameters}):",
+            "    ${3:pass}"
+        ],
+        "description": "Define an async function"
+    },
+    "Class Definition": {
+        "prefix": "class",
+        "body": [
+            "class ${1:ClassName}:",
+            "    def __init__(self${2:, parameters}):",
+            "        ${3:pass}"
+        ],
+        "description": "Define a class"
+    },
+    "If Statement": {
+        "prefix": "if",
+        "body": [
+            "if ${1:condition}:",
+            "    ${2:pass}"
+        ],
+        "description": "If statement"
+    },
+    "If-Else Statement": {
+        "prefix": "ifelse",
+        "body": [
+            "if ${1:condition}:",
+            "    ${2:pass}",
+            "else:",
+            "    ${3:pass}"
+        ],
+        "description": "If-else statement"
+    },
+    "For Loop": {
+        "prefix": "for",
+        "body": [
+            "for ${1:item} in ${2:iterable}:",
+            "    ${3:pass}"
+        ],
+        "description": "For loop"
+    },
+    "While Loop": {
+        "prefix": "while",
+        "body": [
+            "while ${1:condition}:",
+            "    ${2:pass}"
+        ],
+        "description": "While loop"
+    },
+    "Try-Except": {
+        "prefix": "try",
+        "body": [
+            "try:",
+            "    ${1:pass}",
+            "except ${2:Exception} as ${3:e}:",
+            "    ${4:pass}"
+        ],
+        "description": "Try-except block"
+    },
+    "List Comprehension": {
+        "prefix": "lc",
+        "body": [
+            "[${1:expression} for ${2:item} in ${3:iterable}${4: if ${5:condition}}]"
+        ],
+        "description": "List comprehension"
+    },
+    "Dictionary Comprehension": {
+        "prefix": "dc",
+        "body": [
+            "{${1:key}: ${2:value} for ${3:item} in ${4:iterable}${5: if ${6:condition}}}"
+        ],
+        "description": "Dictionary comprehension"
+    },
+    "Main Function": {
+        "prefix": "main",
+        "body": [
+            "def main():",
+            "    ${1:pass}",
+            "",
+            "if __name__ == \"__main__\":",
+            "    main()"
+        ],
+        "description": "Main function pattern"
+    },
+    "Import Statement": {
+        "prefix": "import",
+        "body": [
+            "import ${1:module}"
+        ],
+        "description": "Import statement"
+    },
+    "From Import": {
+        "prefix": "from",
+        "body": [
+            "from ${1:module} import ${2:item}"
+        ],
+        "description": "From import statement"
+    },
+    "React Component": {
+        "prefix": "reactcomp",
+        "body": [
+            "def ${1:ComponentName}({ ${2:props} }):",
+            "    return (",
+            "        <div${3: className=\"${4:class-name}\"}>${5:}",
+            "            ${6:// Component content}",
+            "        </div>",
+            "    )"
+        ],
+        "description": "React component function"
+    },
+    "React Hook useState": {
+        "prefix": "usestate",
+        "body": [
+            "${1:state}, ${2:setState} = useState(${3:initialValue})"
+        ],
+        "description": "React useState hook"
+    },
+    "React Hook useEffect": {
+        "prefix": "useeffect",
+        "body": [
+            "useEffect(() => {",
+            "    ${1:// Effect logic}",
+            "}, [${2:dependencies}])"
+        ],
+        "description": "React useEffect hook"
+    },
+    "Async Function with Try-Catch": {
+        "prefix": "asynctry",
+        "body": [
+            "async def ${1:function_name}(${2:parameters}):",
+            "    try:",
+            "        ${3:// Async operation}",
+            "        result = await ${4:async_operation()}",
+            "        return result",
+            "    except Exception as e:",
+            "        ${5:// Error handling}",
+            "        print(f\"Error: {e}\")"
+        ],
+        "description": "Async function with error handling"
+    },
+    "F-String": {
+        "prefix": "fstr",
+        "body": [
+            "f\"${1:text} {${2:variable}} ${3:more text}\""
+        ],
+        "description": "F-string formatting"
+    },
+    "Match Statement": {
+        "prefix": "match",
+        "body": [
+            "match ${1:value}:",
+            "    case ${2:pattern1}:",
+            "        ${3:pass}",
+            "    case ${4:pattern2}:",
+            "        ${5:pass}",
+            "    case _:",
+            "        ${6:pass}"
+        ],
+        "description": "Match statement (pattern matching)"
+    },
+    "Express Route Handler": {
+        "prefix": "route",
+        "body": [
+            "@app.${1:get}(\"${2:/path}\")",
+            "def ${3:handler_name}(req, res):",
+            "    ${4:// Route logic}",
+            "    res.json({\"message\": \"${5:response}\"})"
+        ],
+        "description": "Express route handler"
+    },
+    "Fibonacci Function": {
+        "prefix": "fibonacci",
+        "body": [
+            "def fibonacci(n: int) -> int:",
+            "    if n <= 1:",
+            "        return n",
+            "    return fibonacci(n - 1) + fibonacci(n - 2)"
+        ],
+        "description": "Fibonacci function implementation"
+    }
+}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1E40AF;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="cobraGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#059669;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#10B981;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#34D399;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background -->
+    <rect width="16" height="16" fill="url(#bgGradient)" rx="2"/>
+
+    <!-- King Cobra Body - Curved around J -->
+    <path d="M2 12 Q4 10 6 8 Q8 6 10 8 Q12 10 14 6"
+          stroke="url(#cobraGradient)"
+          stroke-width="1.5"
+          fill="none"
+          stroke-linecap="round"/>
+
+    <!-- Cobra Head -->
+    <circle cx="13.5" cy="6.5" r="1.2" fill="#059669"/>
+    <circle cx="13.8" cy="6.2" r="0.3" fill="#DC2626"/> <!-- Eye -->
+
+    <!-- Cobra Hood Pattern -->
+    <path d="M12.5 6 Q13.5 4.5 14.5 6"
+          stroke="#047857"
+          stroke-width="0.5"
+          fill="none"/>
+
+    <!-- Letter J in the center -->
+    <text x="7" y="11"
+          font-family="Georgia, serif"
+          font-size="8"
+          font-weight="bold"
+          text-anchor="middle"
+          fill="#F9FAFB"
+          stroke="#1F2937"
+          stroke-width="0.3">J</text>
+
+    <!-- Snake scales pattern -->
+    <circle cx="4" cy="11" r="0.3" fill="#047857" opacity="0.6"/>
+    <circle cx="6" cy="9" r="0.3" fill="#047857" opacity="0.6"/>
+    <circle cx="8" cy="7" r="0.3" fill="#047857" opacity="0.6"/>
+    <circle cx="10" cy="9" r="0.3" fill="#047857" opacity="0.6"/>
+</svg>

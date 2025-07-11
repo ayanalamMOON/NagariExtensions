@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="bgGradient128" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1E40AF;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="cobraGradient128" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#059669;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#10B981;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#34D399;stop-opacity:1" />
+        </linearGradient>
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Background with shadow -->
+    <rect width="128" height="128" fill="url(#bgGradient128)" rx="16" filter="url(#glow)"/>
+
+    <!-- King Cobra Body - Curved around J -->
+    <path d="M20 96 Q32 80 48 64 Q64 48 80 64 Q96 80 112 48"
+          stroke="url(#cobraGradient128)"
+          stroke-width="8"
+          fill="none"
+          stroke-linecap="round"
+          filter="url(#glow)"/>
+
+    <!-- Secondary curve for thickness -->
+    <path d="M24 92 Q36 76 52 60 Q68 44 84 60 Q100 76 108 52"
+          stroke="#047857"
+          stroke-width="4"
+          fill="none"
+          stroke-linecap="round"
+          opacity="0.6"/>
+
+    <!-- Cobra Head -->
+    <ellipse cx="108" cy="52" rx="12" ry="8" fill="#059669" filter="url(#glow)"/>
+    <circle cx="112" cy="48" r="3" fill="#DC2626"/> <!-- Eye -->
+    <circle cx="113" cy="47" r="1" fill="#FBBF24"/> <!-- Eye reflection -->
+
+    <!-- Cobra Hood Pattern -->
+    <path d="M96 52 Q108 36 120 52"
+          stroke="#047857"
+          stroke-width="3"
+          fill="none"/>
+    <path d="M100 50 Q108 40 116 50"
+          stroke="#065F46"
+          stroke-width="2"
+          fill="none"/>
+
+    <!-- Forked tongue -->
+    <path d="M116 50 L124 48 M124 48 L126 46 M124 48 L126 50"
+          stroke="#DC2626"
+          stroke-width="1.5"
+          stroke-linecap="round"/>
+
+    <!-- Letter J in the center -->
+    <text x="56" y="88"
+          font-family="Georgia, serif"
+          font-size="48"
+          font-weight="bold"
+          text-anchor="middle"
+          fill="#F9FAFB"
+          stroke="#1F2937"
+          stroke-width="2"
+          filter="url(#glow)">J</text>
+
+    <!-- Snake scales pattern -->
+    <circle cx="32" cy="88" r="3" fill="#047857" opacity="0.6"/>
+    <circle cx="48" cy="72" r="3" fill="#047857" opacity="0.6"/>
+    <circle cx="64" cy="56" r="3" fill="#047857" opacity="0.6"/>
+    <circle cx="80" cy="72" r="3" fill="#047857" opacity="0.6"/>
+    <circle cx="96" cy="64" r="3" fill="#047857" opacity="0.6"/>
+
+    <!-- Additional detail scales -->
+    <circle cx="28" cy="84" r="1.5" fill="#065F46" opacity="0.8"/>
+    <circle cx="44" cy="68" r="1.5" fill="#065F46" opacity="0.8"/>
+    <circle cx="60" cy="52" r="1.5" fill="#065F46" opacity="0.8"/>
+    <circle cx="76" cy="68" r="1.5" fill="#065F46" opacity="0.8"/>
+    <circle cx="92" cy="60" r="1.5" fill="#065F46" opacity="0.8"/>
+
+    <!-- Subtle highlight on J -->
+    <path d="M52 45 Q56 35 60 45"
+          stroke="#FBBF24"
+          stroke-width="1"
+          fill="none"
+          opacity="0.4"/>
+</svg>
