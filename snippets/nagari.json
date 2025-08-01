@@ -339,5 +339,139 @@
             "    ${5:# Handle general error}"
         ],
         "description": "Comprehensive error handling"
+    },
+    "React Function Component": {
+        "prefix": "component",
+        "body": [
+            "def ${1:ComponentName}({ ${2:props} }):",
+            "    ${3:# Component logic}",
+            "    return (",
+            "        <div className=\"${4:component-class}\">",
+            "            ${5:<!-- Component content -->}",
+            "        </div>",
+            "    )"
+        ],
+        "description": "React functional component"
+    },
+    "React Hook": {
+        "prefix": "hook",
+        "body": [
+            "def use${1:HookName}(${2:initial_value}):",
+            "    ${3:state}, set${3:State} = useState(${2:initial_value})",
+            "    ",
+            "    useEffect(() => {",
+            "        ${4:# Effect logic}",
+            "    }, [${5:dependencies}])",
+            "    ",
+            "    return { ${3:state}, set${3:State} }"
+        ],
+        "description": "Custom React hook"
+    },
+    "Template Literal": {
+        "prefix": "template",
+        "body": [
+            "`${1:text} \\${${2:variable}} ${3:more text}`"
+        ],
+        "description": "Template literal with interpolation"
+    },
+    "Spread Operator": {
+        "prefix": "spread",
+        "body": [
+            "...${1:object}"
+        ],
+        "description": "Spread operator"
+    },
+    "Destructuring Assignment": {
+        "prefix": "destructure",
+        "body": [
+            "{ ${1:prop1}, ${2:prop2} } = ${3:object}"
+        ],
+        "description": "Destructuring assignment"
+    },
+    "Pattern Match with Guard": {
+        "prefix": "matchguard",
+        "body": [
+            "match ${1:value}:",
+            "    case ${2:pattern} if ${3:condition}:",
+            "        ${4:pass}",
+            "    case _:",
+            "        ${5:pass}"
+        ],
+        "description": "Pattern match with guard clause"
+    },
+    "Module Export": {
+        "prefix": "export",
+        "body": [
+            "export ${1:default }${2:function_or_class}"
+        ],
+        "description": "Module export statement"
+    },
+    "Type Alias": {
+        "prefix": "type",
+        "body": [
+            "type ${1:TypeName} = ${2:Type}"
+        ],
+        "description": "Type alias definition"
+    },
+    "Union Type": {
+        "prefix": "union",
+        "body": [
+            "${1:Type1} | ${2:Type2}"
+        ],
+        "description": "Union type annotation"
+    },
+    "Optional Type": {
+        "prefix": "optional",
+        "body": [
+            "Optional[${1:Type}]"
+        ],
+        "description": "Optional type annotation"
+    },
+    "List Comprehension with Guard": {
+        "prefix": "listcomp",
+        "body": [
+            "[${1:expression} for ${2:item} in ${3:iterable} if ${4:condition}]"
+        ],
+        "description": "List comprehension with conditional"
+    },
+    "Dict Comprehension": {
+        "prefix": "dictcomp",
+        "body": [
+            "{${1:key}: ${2:value} for ${3:item} in ${4:iterable}}"
+        ],
+        "description": "Dictionary comprehension"
+    },
+    "Generator Expression": {
+        "prefix": "genexp",
+        "body": [
+            "(${1:expression} for ${2:item} in ${3:iterable})"
+        ],
+        "description": "Generator expression"
+    },
+    "Async Context Manager": {
+        "prefix": "awith",
+        "body": [
+            "async with ${1:context} as ${2:variable}:",
+            "    ${3:pass}"
+        ],
+        "description": "Async context manager"
+    },
+    "Express Server": {
+        "prefix": "server",
+        "body": [
+            "import express from \"express\"",
+            "",
+            "app = express()",
+            "",
+            "@app.get(\"/\")",
+            "def index(req, res):",
+            "    res.json({\"message\": \"Hello from Nagari!\"})",
+            "",
+            "if __name__ == \"__main__\":",
+            "    app.listen(${1:3000}, () => {",
+            "        print(f\"Server running on port ${1:3000}\")",
+            "    })"
+        ],
+        "description": "Express server setup"
     }
 }

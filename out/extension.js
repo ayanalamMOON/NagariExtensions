@@ -119,34 +119,148 @@ function registerCommands(context) {
         terminal.show();
         terminal.sendText(`${nagariExecutable} repl --enhanced`);
     });
-    context.subscriptions.push(runCommand, buildCommand, transpileCommand, replCommand);
+    // Create new project command
+    const createProjectCommand = vscode.commands.registerCommand('nagari.createProject', async () => {
+        const projectName = await vscode.window.showInputBox({
+            prompt: 'Enter project name',
+            validateInput: (value) => {
+                if (!value || value.trim().length === 0) {
+                    return 'Project name cannot be empty';
+                }
+                if (!/^[a-zA-Z0-9_-]+$/.test(value)) {
+                    return 'Project name can only contain letters, numbers, hyphens, and underscores';
+                }
+                return null;
+            }
+        });
+        if (!projectName) {
+            return;
+        }
+        const template = await vscode.window.showQuickPick([
+            { label: 'basic', description: 'Basic Nagari project' },
+            { label: 'react', description: 'React application with Nagari' },
+            { label: 'express', description: 'Express.js server with Nagari' },
+            { label: 'cli', description: 'Command-line application' }
+        ], {
+            placeHolder: 'Select project template'
+        });
+        if (!template) {
+            return;
+        }
+        const config = vscode.workspace.getConfiguration('nagari');
+        const nagariExecutable = config.get('executable.path', 'nag');
+        const terminal = vscode.window.createTerminal('Nagari Project');
+        terminal.show();
+        terminal.sendText(`${nagariExecutable} init ${projectName} --template ${template.label}`);
+    });
+    // New file command
+    const newFileCommand = vscode.commands.registerCommand('nagari.newFile', async () => {
+        const fileName = await vscode.window.showInputBox({
+            prompt: 'Enter file name (without .nag extension)',
+            validateInput: (value) => {
+                if (!value || value.trim().length === 0) {
+                    return 'File name cannot be empty';
+                }
+                return null;
+            }
+        });
+        if (!fileName) {
+            return;
+        }
+        const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
+        if (!workspaceFolder) {
+            vscode.window.showErrorMessage('No workspace folder found');
+            return;
+        }
+        const filePath = path.join(workspaceFolder.uri.fsPath, `${fileName}.nag`);
+        const uri = vscode.Uri.file(filePath);
+        await vscode.workspace.fs.writeFile(uri, new TextEncoder().encode('# New Nagari file\n\ndef main():\n    print("Hello, Nagari!")\n\nif __name__ == "__main__":\n    main()\n'));
+        const document = await vscode.workspace.openTextDocument(uri);
+        await vscode.window.showTextDocument(document);
+    });
+    // Format command
+    const formatCommand = vscode.commands.registerCommand('nagari.format', async (uri) => {
+        const filePath = uri?.fsPath || vscode.window.activeTextEditor?.document.fileName;
+        if (!filePath || !filePath.endsWith('.nag')) {
+            vscode.window.showErrorMessage('Please select a .nag file to format');
+            return;
+        }
+        const config = vscode.workspace.getConfiguration('nagari');
+        const nagariExecutable = config.get('executable.path', 'nag');
+        const terminal = vscode.window.createTerminal('Nagari Format');
+        terminal.show();
+        terminal.sendText(`${nagariExecutable} format "${filePath}"`);
+    });
+    // Lint command
+    const lintCommand = vscode.commands.registerCommand('nagari.lint', async (uri) => {
+        const filePath = uri?.fsPath || vscode.window.activeTextEditor?.document.fileName;
+        if (!filePath || !filePath.endsWith('.nag')) {
+            vscode.window.showErrorMessage('Please select a .nag file to lint');
+            return;
+        }
+        const config = vscode.workspace.getConfiguration('nagari');
+        const nagariExecutable = config.get('executable.path', 'nag');
+        const terminal = vscode.window.createTerminal('Nagari Lint');
+        terminal.show();
+        terminal.sendText(`${nagariExecutable} lint "${filePath}"`);
+    });
+    context.subscriptions.push(runCommand, buildCommand, transpileCommand, replCommand, createProjectCommand, newFileCommand, formatCommand, lintCommand);
 }
 function startLanguageServer(context) {
     const config = vscode.workspace.getConfiguration('nagari');
     const nagariExecutable = config.get('executable.path', 'nag');
-    const lspPort = config.get('lsp.port', 0);
+    const serverPort = config.get('lsp.port', 0);
     let serverOptions;
-    if (lspPort > 0) {
-        // TCP connection
+    if (serverPort > 0) {
+        // TCP mode
         serverOptions = {
-            run: { command: nagariExecutable, args: ['lsp', '--mode', 'tcp', '--port', lspPort.toString()] },
-            debug: { command: nagariExecutable, args: ['lsp', '--mode', 'tcp', '--port', lspPort.toString()] }
+            run: { command: nagariExecutable, args: ['lsp', '--tcp', serverPort.toString()] },
+            debug: { command: nagariExecutable, args: ['lsp', '--tcp', serverPort.toString(), '--debug'] }
         };
     }
     else {
-        // stdio connection
+        // stdio mode (default)
         serverOptions = {
-            run: { command: nagariExecutable, args: ['lsp', '--mode', 'stdio'] },
-            debug: { command: nagariExecutable, args: ['lsp', '--mode', 'stdio'] }
+            run: { command: nagariExecutable, args: ['lsp', '--stdio'] },
+            debug: { command: nagariExecutable, args: ['lsp', '--stdio', '--debug'] }
         };
     }
     const clientOptions = {
         documentSelector: [{ scheme: 'file', language: 'nagari' }],
         synchronize: {
             fileEvents: vscode.workspace.createFileSystemWatcher('**/*.nag')
+        },
+        outputChannel: outputChannel,
+        traceOutputChannel: outputChannel,
+        initializationOptions: {
+            completion: config.get('completion.enabled', true),
+            diagnostics: config.get('diagnostics.enabled', true),
+            hover: config.get('hover.enabled', true),
+            formatting: config.get('format.onSave', true),
+            inlayHints: true,
+            semanticTokens: true,
+            codeActions: true
         }
     };
-    client = new node_1.LanguageClient('nagariLanguageServer', 'Nagari Language Server', serverOptions, clientOptions);
+    client = new node_1.LanguageClient('nagari', 'Nagari Language Server', serverOptions, clientOptions);
+    // Handle LSP server state changes
+    client.onDidChangeState((event) => {
+        switch (event.newState) {
+            case 3: // Running
+                statusBarItem.text = "$(check) Nagari LSP";
+                statusBarItem.color = new vscode.ThemeColor('statusBar.foreground');
+                break;
+            case 1: // Starting  
+                statusBarItem.text = "$(sync~spin) Starting LSP";
+                statusBarItem.color = new vscode.ThemeColor('statusBar.foreground');
+                break;
+            case 2: // Stopped
+                statusBarItem.text = "$(error) LSP Stopped";
+                statusBarItem.color = new vscode.ThemeColor('statusBarItem.errorForeground');
+                break;
+        }
+    });
+    // Start the client and add to subscriptions
     client.start();
     context.subscriptions.push(client);
 }

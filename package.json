@@ -98,6 +98,18 @@
                 "title": "New Nagari File",
                 "category": "Nagari",
                 "icon": "$(new-file)"
+            },
+            {
+                "command": "nagari.format",
+                "title": "Format Nagari File",
+                "category": "Nagari",
+                "icon": "$(symbol-parameter)"
+            },
+            {
+                "command": "nagari.lint",
+                "title": "Lint Nagari File",
+                "category": "Nagari",
+                "icon": "$(check)"
             }
         ],
         "menus": {
@@ -112,12 +124,22 @@
                 {
                     "when": "resourceExtname == .nag",
                     "command": "nagari.run",
-                    "group": "nagari"
+                    "group": "nagari@1"
                 },
                 {
                     "when": "resourceExtname == .nag",
                     "command": "nagari.transpile",
-                    "group": "nagari"
+                    "group": "nagari@2"
+                },
+                {
+                    "when": "resourceExtname == .nag",
+                    "command": "nagari.format",
+                    "group": "nagari@3"
+                },
+                {
+                    "when": "resourceExtname == .nag",
+                    "command": "nagari.lint",
+                    "group": "nagari@4"
                 }
             ],
             "explorer/context": [
@@ -247,6 +269,46 @@
                     "default": 0,
                     "description": "Port for Nagari LSP server (0 for stdio)"
                 },
+                "nagari.lsp.debug": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable debug mode for LSP server"
+                },
+                "nagari.lsp.features.completion": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable code completion"
+                },
+                "nagari.lsp.features.hover": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable hover information"
+                },
+                "nagari.lsp.features.diagnostics": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable error diagnostics"
+                },
+                "nagari.lsp.features.formatting": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable document formatting"
+                },
+                "nagari.lsp.features.semanticTokens": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable semantic syntax highlighting"
+                },
+                "nagari.lsp.features.inlayHints": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable inlay hints for types and parameters"
+                },
+                "nagari.lsp.features.codeActions": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable code actions and quick fixes"
+                },
                 "nagari.transpile.target": {
                     "type": "string",
                     "enum": [
@@ -261,6 +323,26 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Enable optimization during build"
+                },
+                "nagari.build.sourcemap": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Generate source maps for debugging"
+                },
+                "nagari.build.minify": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Minify output files"
+                },
+                "nagari.build.jsx": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable JSX support"
+                },
+                "nagari.build.declarations": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Generate TypeScript declaration files"
                 },
                 "nagari.format.onSave": {
                     "type": "boolean",
@@ -366,6 +448,21 @@
         {
             "command": "nagari.transpile",
             "key": "ctrl+shift+t",
+            "when": "resourceExtname == .nag"
+        },
+        {
+            "command": "nagari.format",
+            "key": "ctrl+shift+f",
+            "when": "resourceExtname == .nag"
+        },
+        {
+            "command": "nagari.lint",
+            "key": "ctrl+shift+l",
+            "when": "resourceExtname == .nag"
+        },
+        {
+            "command": "nagari.startRepl",
+            "key": "ctrl+shift+r",
             "when": "resourceExtname == .nag"
         }
     ],
